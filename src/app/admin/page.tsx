@@ -1,40 +1,103 @@
+import Calendar from "@/components/admin/Calendar";
+
+const statCards = [
+  {
+    label: "Atualizações planejadas hoje",
+    value: 0,
+    icon: "📋",
+    color: "text-blue-400",
+  },
+  {
+    label: "Atualizaram hoje",
+    value: 0,
+    icon: "✅",
+    color: "text-green-400",
+  },
+  {
+    label: "Vencimentos hoje",
+    value: 0,
+    icon: "⚠️",
+    color: "text-red-400",
+  },
+  {
+    label: "Vencimentos próximos 7 dias",
+    value: 0,
+    icon: "⚠️",
+    color: "text-yellow-400",
+  },
+  {
+    label: "Alunos ativos",
+    value: 0,
+    icon: "👤",
+    color: "text-blue-400",
+  },
+  {
+    label: "Alunos vencidos",
+    value: 0,
+    icon: "👤",
+    color: "text-muted",
+  },
+  {
+    label: "Sem vigência",
+    value: 0,
+    icon: "⚠️",
+    color: "text-yellow-400",
+  },
+  {
+    label: "Aniversariantes hoje",
+    value: 0,
+    icon: "🎁",
+    color: "text-purple-400",
+  },
+];
+
 export default function AdminDashboard() {
   return (
     <div className="flex flex-col gap-8">
-      <div>
-        <h2 className="text-2xl font-bold text-foreground uppercase tracking-tight">
+      {/* Título */}
+      <div className="flex items-center gap-3">
+        <span className="text-xl text-muted">📅</span>
+        <h1 className="text-2xl font-bold text-foreground uppercase tracking-tight">
           Dashboard
-        </h2>
-        <p className="text-muted mt-1">Visão geral dos seus alunos e treinos</p>
+        </h1>
       </div>
 
       {/* Cards de resumo */}
-      <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-        <StatCard label="Alunos ativos" value="0" />
-        <StatCard label="Treinos criados" value="0" />
-        <StatCard label="Dietas criadas" value="0" />
+      <div className="grid grid-cols-2 md:grid-cols-3 xl:grid-cols-6 gap-4">
+        {statCards.slice(0, 6).map((card) => (
+          <StatCard key={card.label} {...card} />
+        ))}
+      </div>
+      <div className="grid grid-cols-2 md:grid-cols-4 xl:grid-cols-4 gap-4 max-w-2xl">
+        {statCards.slice(6).map((card) => (
+          <StatCard key={card.label} {...card} />
+        ))}
       </div>
 
-      {/* Placeholder de conteúdo futuro */}
-      <div className="rounded-xl border border-border bg-surface p-8 flex flex-col items-center justify-center gap-3 text-center min-h-64">
-        <div className="w-12 h-12 rounded-xl bg-surface-light border border-border flex items-center justify-center">
-          <span className="text-xl text-muted">📋</span>
-        </div>
-        <p className="font-semibold text-foreground">Nenhum aluno cadastrado ainda</p>
-        <p className="text-sm text-muted">Comece adicionando seu primeiro aluno</p>
-        <button className="mt-2 px-6 h-10 rounded-lg bg-primary text-white text-sm font-bold uppercase tracking-wide hover:bg-primary-hover transition-colors">
-          Adicionar Aluno
-        </button>
-      </div>
+      {/* Calendário */}
+      <Calendar />
     </div>
   );
 }
 
-function StatCard({ label, value }: { label: string; value: string }) {
+function StatCard({
+  label,
+  value,
+  icon,
+  color,
+}: {
+  label: string;
+  value: number;
+  icon: string;
+  color: string;
+}) {
   return (
-    <div className="rounded-xl bg-surface border border-border p-6 flex flex-col gap-1">
-      <p className="text-sm text-muted">{label}</p>
-      <p className="text-3xl font-bold text-foreground">{value}</p>
+    <div className="rounded-xl bg-surface border border-border p-5 flex flex-col gap-3 hover:border-border/80 transition-colors cursor-pointer">
+      <p className="text-sm text-muted leading-snug">{label}</p>
+      <div className="flex items-center gap-2">
+        <span className="text-base">{icon}</span>
+        <span className={`text-2xl font-bold ${color}`}>{value}</span>
+      </div>
     </div>
   );
 }
