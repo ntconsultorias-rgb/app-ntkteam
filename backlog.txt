@@ -1,0 +1,128 @@
+================================================================================
+                    APP NETO - TREINO & DIETA
+                    BACKLOG DE DESENVOLVIMENTO
+================================================================================
+
+TECH STACK
+--------------------------------------------------------------------------------
+Camada          | Ferramenta
+----------------|---------------------------------------------------------------
+Framework       | Next.js 16 (App Router, TypeScript)
+UI              | Tailwind CSS 4 + Lucide Icons
+Backend/DB      | Supabase (PostgreSQL + Auth + Storage)
+Deploy          | Vercel (hosting + cron jobs)
+Dominio         | NameCheap (ex: treinoneto.com)
+PWA             | next-pwa (instalavel no celular sem app store)
+Auth            | JWT (personal) + session (aluno)
+
+
+ARQUITETURA DO APP
+--------------------------------------------------------------------------------
+
+Personal (admin)  -->  Painel Web (desktop/mobile)
+                          |
+                          |-- Criar/editar treinos
+                          |-- Criar/editar dietas
+                          |-- Gerenciar alunos
+                          |-- Ver progresso dos alunos
+
+Aluno (client)    -->  PWA Mobile
+                          |
+                          |-- Ver treino do dia
+                          |-- Marcar series feitas
+                          |-- Registrar cargas usadas
+                          |-- Ver dieta prescrita
+                          |-- Ver historico/evolucao
+
+
+================================================================================
+FASE 1 - FUNDACAO (Sprint 1-2)
+================================================================================
+
+[ ] 1. Setup do projeto
+       - Next.js + TypeScript + Tailwind + Supabase + PWA
+
+[ ] 2. Modelagem do banco (Supabase)
+       - trainers (personal trainers / admins)
+       - students (alunos vinculados ao trainer)
+       - workout_plans (planos de treino)
+       - workout_days (dias do treino: A, B, C...)
+       - exercises (exercicios dentro de cada dia)
+       - diet_plans (planos de dieta)
+       - meals (refeicoes dentro do plano)
+       - meal_items (alimentos de cada refeicao)
+       - workout_logs (registros do aluno: carga, series feitas)
+
+[ ] 3. Auth do Personal
+       - Registro, login, JWT, middleware de protecao
+
+[ ] 4. Auth do Aluno
+       - Login por email/codigo, session cookie
+
+[ ] 5. Deploy inicial na Vercel + dominio NameCheap
+
+
+================================================================================
+FASE 2 - PAINEL DO PERSONAL (Sprint 3-4)
+================================================================================
+
+[ ] 6.  Dashboard - visao geral (qtd alunos, treinos ativos, etc.)
+[ ] 7.  CRUD de Alunos - cadastrar, editar, desativar alunos
+[ ] 8.  CRUD de Treinos - criar planos de treino com dias (A/B/C)
+[ ] 9.  Editor de Exercicios - nome, series, repeticoes, descanso,
+         observacoes, video/gif demonstrativo
+[ ] 10. Vincular treino ao aluno - atribuir plano especifico a cada aluno
+[ ] 11. CRUD de Dietas - criar planos alimentares com refeicoes e alimentos
+[ ] 12. Vincular dieta ao aluno
+
+
+================================================================================
+FASE 3 - APP DO ALUNO / PWA (Sprint 5-6)
+================================================================================
+
+[ ] 13. Tela de login do aluno (mobile-first)
+[ ] 14. Tela "Meu Treino" - ver treino do dia atual, exercicios com detalhes
+[ ] 15. Check de series - marcar serie como feita, registrar carga usada
+[ ] 16. Tela "Minha Dieta" - ver refeicoes e alimentos do plano
+[ ] 17. Historico de treinos - ver treinos anteriores e cargas registradas
+[ ] 18. PWA install prompt - tela de instalacao no celular
+[ ] 19. Notificacoes push (opcional) - lembrete de treino
+
+
+================================================================================
+FASE 4 - MULTI-TENANT SAAS (Sprint 7-8)
+================================================================================
+
+[ ] 20. Onboarding de novos personais - registro self-service
+[ ] 21. Isolamento de dados - cada personal ve so seus alunos (RLS no Supabase)
+[ ] 22. Subdominio ou slug por personal
+         (ex: neto.treinoapp.com ou treinoapp.com/neto)
+[ ] 23. Planos/pricing (futuro) - free tier + plano pago
+
+
+================================================================================
+FASE 5 - EVOLUCAO (Sprint 9+)
+================================================================================
+
+[ ] 24. Biblioteca de exercicios - banco compartilhado com gifs/videos
+[ ] 25. Templates de treino - duplicar treinos entre alunos
+[ ] 26. Graficos de evolucao - peso, carga, medidas ao longo do tempo
+[ ] 27. Chat personal-aluno (opcional)
+[ ] 28. Fotos de progresso do aluno (Supabase Storage)
+[ ] 29. Exportar treino em PDF
+
+
+================================================================================
+CUSTOS ESTIMADOS
+================================================================================
+
+Servico         | Custo
+----------------|---------------------------------------------------------------
+Supabase        | Free tier (ate 500MB DB, 1GB storage)
+Vercel          | Free tier (hobby) ou ~$20/mes (Pro)
+NameCheap       | ~$8-12/ano pelo dominio
+----------------|---------------------------------------------------------------
+Total inicial   | ~$10-20/mes
+
+
+================================================================================
