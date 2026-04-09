@@ -142,9 +142,9 @@ export default function AlunosPage() {
                       <div className={`w-8 h-8 rounded-full ${getAvatarColor(i)} flex items-center justify-center shrink-0`}>
                         <span className="text-xs font-bold text-white">{getInitial(aluno.nome)}</span>
                       </div>
-                      <span className="text-primary font-medium cursor-pointer hover:underline">
+                      <a href={`/admin/alunos/${aluno.id}`} className="text-primary font-medium hover:underline">
                         {aluno.nome}
-                      </span>
+                      </a>
                     </div>
                   </td>
                   <td className="px-6 py-4 text-muted">{aluno.email}</td>
