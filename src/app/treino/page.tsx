@@ -6,23 +6,26 @@ const treinos = [
   {
     id: "upper-1",
     nome: "Upper 1",
+    descricao: "Peito, costas, ombros e braços",
     series: 14,
-    cor: "from-red-800 to-red-600",
-    imagem: null,
+    cor: "#7f1d1d",
+    imagem: "/treinos/upper-1.jpg",
   },
   {
     id: "lower-2",
     nome: "Lower 2",
+    descricao: "Quadríceps, posterior e glúteo",
     series: 11,
-    cor: "from-blue-800 to-blue-600",
-    imagem: null,
+    cor: "#1e3a8a",
+    imagem: "/treinos/lower-2.jpg",
   },
   {
     id: "lower-3",
     nome: "Lower 3",
+    descricao: "Glúteo, abdutora e panturrilha",
     series: 9,
-    cor: "from-amber-800 to-amber-600",
-    imagem: null,
+    cor: "#78350f",
+    imagem: "/treinos/lower-3.jpg",
   },
 ];
 
@@ -47,34 +50,43 @@ export default function SelecionarTreino() {
           <Link
             key={treino.id}
             href={`/treino/${treino.id}`}
-            className={`relative rounded-2xl overflow-hidden bg-gradient-to-br ${treino.cor} min-h-44 flex flex-col justify-between p-5 active:scale-95 transition-transform`}
+            className="relative rounded-2xl overflow-hidden min-h-48 flex flex-col justify-between p-5 active:scale-95 transition-transform"
+            style={{ backgroundColor: treino.cor }}
           >
-            {/* Overlay escuro */}
-            <div className="absolute inset-0 bg-black/30" />
+            {/* Imagem de fundo */}
+            {treino.imagem && (
+              <div
+                className="absolute inset-0 bg-cover bg-center"
+                style={{ backgroundImage: `url(${treino.imagem})` }}
+              />
+            )}
 
-            {/* Ícone muscular decorativo */}
-            <div className="absolute right-4 top-1/2 -translate-y-1/2 opacity-20">
-              <svg width="80" height="80" viewBox="0 0 24 24" fill="white" strokeWidth="0">
-                <path d="M20.57 14.86L22 13.43 20.57 12 17 15.57 8.43 7 12 3.43 10.57 2 9.14 3.43 7.71 2 5.57 4.14 4.14 2.71 2.71 4.14l1.43 1.43L2 7.71l1.43 1.43L2 10.57 3.43 12 7 8.43 15.57 17 12 20.57 13.43 22l1.43-1.43L16.29 22l2.14-2.14 1.43 1.43 1.43-1.43-1.43-1.43L22 16.29z" />
-              </svg>
-            </div>
+            {/* Overlay gradiente para legibilidade */}
+            <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-black/20" />
 
             {/* Conteúdo */}
-            <div className="relative z-10">
-              <span className="text-white/70 text-xs font-semibold uppercase tracking-widest">
+            <div className="relative z-10 flex items-start justify-between">
+              <span className="inline-flex items-center gap-1.5 bg-white/15 backdrop-blur-sm rounded-full px-3 py-1 text-white/90 text-xs font-semibold uppercase tracking-widest">
+                <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                  <polyline points="22 12 18 12 15 21 9 3 6 12 2 12" />
+                </svg>
                 {treino.series} séries válidas
               </span>
-              <h2 className="text-2xl font-bold text-white mt-1 uppercase tracking-tight">
-                {treino.nome}
-              </h2>
             </div>
 
-            {/* Botão iniciar */}
-            <div className="relative z-10 mt-4">
-              <div className="w-12 h-12 rounded-full bg-white/20 border-2 border-white/40 flex items-center justify-center">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="white">
-                  <path d="M20.57 14.86L22 13.43 20.57 12 17 15.57 8.43 7 12 3.43 10.57 2 9.14 3.43 7.71 2 5.57 4.14 4.14 2.71 2.71 4.14l1.43 1.43L2 7.71l1.43 1.43L2 10.57 3.43 12 7 8.43 15.57 17 12 20.57 13.43 22l1.43-1.43L16.29 22l2.14-2.14 1.43 1.43 1.43-1.43-1.43-1.43L22 16.29z" />
+            {/* Nome e descrição */}
+            <div className="relative z-10">
+              <h2 className="text-3xl font-bold text-white uppercase tracking-tight drop-shadow-lg">
+                {treino.nome}
+              </h2>
+              <p className="text-white/70 text-sm mt-0.5">{treino.descricao}</p>
+
+              {/* Botão iniciar */}
+              <div className="mt-4 inline-flex items-center gap-2 bg-white/20 backdrop-blur-sm border border-white/30 rounded-full px-4 py-2">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                  <polygon points="5 3 19 12 5 21 5 3" />
                 </svg>
+                <span className="text-white text-sm font-bold">Iniciar treino</span>
               </div>
             </div>
           </Link>
