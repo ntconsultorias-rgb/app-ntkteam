@@ -83,20 +83,20 @@ export default function SelecionarTreino() {
 
       {/* Bottom nav */}
       <div className="fixed bottom-0 left-0 right-0 bg-[#1a1a1a] border-t border-white/10 flex items-center justify-around px-6 py-3 pb-6">
-        <NavBtn icon="home" label="Início" active />
-        <NavBtn icon="dumbbell" label="Treino" />
-        <NavBtn icon="food" label="Dieta" />
-        <NavBtn icon="clock" label="Histórico" />
-        <NavBtn icon="user" label="Perfil" />
+        <NavBtn icon="home" label="Início" href="/" />
+        <NavBtn icon="dumbbell" label="Treino" href="/treino" active />
+        <NavBtn icon="food" label="Dieta" href="/dieta" />
+        <NavBtn icon="clock" label="Histórico" href="#" />
+        <NavBtn icon="user" label="Perfil" href="#" />
       </div>
     </div>
   );
 }
 
-function NavBtn({ icon, label, active }: { icon: string; label: string; active?: boolean }) {
+function NavBtn({ icon, label, active, href }: { icon: string; label: string; active?: boolean; href: string }) {
   const color = active ? "#f97316" : "#6b7280";
   return (
-    <button className="flex flex-col items-center gap-1">
+    <Link href={href} className="flex flex-col items-center gap-1">
       {icon === "home" && (
         <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
           <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" /><polyline points="9 22 9 12 15 12 15 22" />
@@ -123,6 +123,6 @@ function NavBtn({ icon, label, active }: { icon: string; label: string; active?:
         </svg>
       )}
       <span className="text-[10px] font-medium" style={{ color }}>{label}</span>
-    </button>
+    </Link>
   );
 }
