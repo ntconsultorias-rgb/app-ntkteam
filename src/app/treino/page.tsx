@@ -2,6 +2,12 @@
 
 import Link from "next/link";
 
+// Futuramente vem do perfil do aluno logado (Supabase)
+const usuarioLogado = {
+  nome: "Julia Miggiorini",
+  genero: "f", // "f" = feminino, "m" = masculino
+};
+
 const treinos = [
   {
     id: "upper-1",
@@ -9,7 +15,7 @@ const treinos = [
     descricao: "Peito, costas, ombros e braços",
     series: 14,
     cor: "#7f1d1d",
-    imagem: "/treinos/upper-1.jpg",
+    imagem: { f: "/treinos/upper-1-f.jpg", m: "/treinos/upper-1-m.jpg" },
   },
   {
     id: "lower-2",
@@ -17,7 +23,7 @@ const treinos = [
     descricao: "Quadríceps, posterior e glúteo",
     series: 11,
     cor: "#1e3a8a",
-    imagem: "/treinos/lower-2.jpg",
+    imagem: { f: "/treinos/lower-2-f.jpg", m: "/treinos/lower-2-m.jpg" },
   },
   {
     id: "lower-3",
@@ -25,7 +31,7 @@ const treinos = [
     descricao: "Glúteo, abdutora e panturrilha",
     series: 9,
     cor: "#78350f",
-    imagem: "/treinos/lower-3.jpg",
+    imagem: { f: "/treinos/lower-3-f.jpg", m: "/treinos/lower-3-m.jpg" },
   },
 ];
 
@@ -53,11 +59,11 @@ export default function SelecionarTreino() {
             className="relative rounded-2xl overflow-hidden min-h-48 flex flex-col justify-between p-5 active:scale-95 transition-transform"
             style={{ backgroundColor: treino.cor }}
           >
-            {/* Imagem de fundo */}
+            {/* Imagem de fundo baseada no gênero do aluno */}
             {treino.imagem && (
               <div
                 className="absolute inset-0 bg-cover bg-center"
-                style={{ backgroundImage: `url(${treino.imagem})` }}
+                style={{ backgroundImage: `url(${treino.imagem[usuarioLogado.genero as "f" | "m"]})` }}
               />
             )}
 
